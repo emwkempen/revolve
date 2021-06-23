@@ -115,16 +115,15 @@ def directed_locomotion(robot_manager, robot):
     line.
     """
 
-    target_direction_degrees = 0.0  # input in degrees
-    weight = 0.01  # default
     ksi = 1.0
+    epsilon: float = sys.float_info.epsilon
     # beta0: float = math.radians(target_direction_degrees)
 
     path_length = measures.path_length(robot_manager)  # L
 
     # robot orientation, array[roll, pitch, yaw]
     orient_0 = robot_manager._orientations[0]
-    orient_1 = robot_manager._orientations[-1]
+    # orient_1 = robot_manager._orientations[-1]
 
     # robot position, Vector3(pos.x, pos.y, pos.z)
     pos_0 = robot_manager._positions[0]
@@ -167,11 +166,18 @@ def directed_locomotion(robot_manager, robot):
     else:
         dist_projection = math.sqrt((pos_0[0] - X_p) ** 2 + (pos_0[1] - Y_p) ** 2)
 
-    dist_penalty = math.sqrt((pos_1[0] - X_p) ** 2 + (pos_1[1] - Y_p) ** 2)
-    penalty = 0.01 * dist_penalty
+    print("Projected distance is ", dist_projection)
 
-    # fitness = dist_projection / (alpha + ksi) - penalty
-    fitness = (abs(dist_projection) / path_length) * (dist_projection / (delta + ksi) - penalty)
+    # filter out passive blocks
+    if dist_projection < 1.0:
+        fitness = 0
+    else:
+        dist_penalty = math.sqrt((pos_1[0] - X_p) ** 2 + (pos_1[1] - Y_p) ** 2)
+        penalty = 0.01 * dist_penalty
+
+        # fitness = dist_projection / (alpha + ksi) - penalty
+        fitness = (abs(dist_projection) / (path_length + epsilon)) * (dist_projection / (delta + ksi) - penalty)
+
     print("Fitness: ", fitness)
 
     return fitness
