@@ -118,16 +118,20 @@ def directed_locomotion(robot_manager, robot):
     ksi = 1.0
     epsilon: float = sys.float_info.epsilon
     # beta0: float = math.radians(target_direction_degrees)
+    print("ksi: ", ksi, ", and epsilon: ", epsilon)
 
     path_length = measures.path_length(robot_manager)  # L
+    print("path length: ", path_length)
 
     # robot orientation, array[roll, pitch, yaw]
     orient_0 = robot_manager._orientations[0]
-    # orient_1 = robot_manager._orientations[-1]
+    orient_1 = robot_manager._orientations[-1]
+    print("Robot orientation: ", orient_0, " at t0, and: ", orient_1, " at t1")
 
     # robot position, Vector3(pos.x, pos.y, pos.z)
     pos_0 = robot_manager._positions[0]
     pos_1 = robot_manager._positions[-1]
+    print("Robot position: ", pos_0, " at t0, and: ", pos_1, " at t1")
 
     # yaw, basing the target direction on starting orientation (frame of reference) of robot
     # directions(forward) of heads are the orientation(+x axis) - 1.570796
@@ -142,8 +146,8 @@ def directed_locomotion(robot_manager, robot):
     # beta1 = arc tangent of y1 - y0 / x1 - x0 in radians
     beta1 = math.atan2((pos_1[1] - pos_0[1]), (pos_1[0] - pos_0[0]))
 
-    print("Target direction is ", beta0, " radians")
-    print("Robot direction is ", beta1, " radians")
+    print("Target direction: ", beta0, " radians")
+    print("Robot direction: ", beta1, " radians")
 
     # intersection angle between the target direction and travelled direction
     # always pick smallest angle
@@ -157,19 +161,20 @@ def directed_locomotion(robot_manager, robot):
     displacement_run = math.sqrt((pos_1[0] - pos_0[0]) ** 2 + (pos_1[1] - pos_0[1]) ** 2)
 
     dist_projection = displacement_run * math.cos(delta)
-    print("Projected distance is ", dist_projection)
+    print("Total displacement: ", displacement_run)
+    print("Projected distance: ", dist_projection)
 
     # filter out passive blocks
     if dist_projection < 1.0:
         fitness = 0
+        print("Did not pass fitness test, fitness = ", fitness)
     else:
         dist_penalty = displacement_run * math.sin(delta)
         penalty = 0.01 * dist_penalty
 
         # fitness = dist_projection / (alpha + ksi) - penalty
         fitness = (abs(dist_projection) / (path_length + epsilon)) * (dist_projection / (delta + ksi) - penalty)
-
-    print("Fitness: ", fitness)
+        print("Fitness = ", fitness)
 
     return fitness
 

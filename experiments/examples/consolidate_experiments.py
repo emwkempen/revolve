@@ -3,7 +3,7 @@ import os
 # set these variables according to your experiments #
 dirpath = 'data'
 experiments_type = [
-                    'default_experiment'
+                    'test_3'
                     ]
 runs = 1
 # set these variables according to your experiments #
@@ -16,14 +16,16 @@ def build_headers(path):
     file_summary.write('robot_id\t')
 
     behavior_headers = []
-    with open(path + '/data_fullevolution/descriptors/behavior_desc_robot_1.txt') as file:
+    with open(path + '/data_fullevolution/descriptors/behavioural/behavior_desc_1.txt') as file:
+    # with open(path + '/data_fullevolution/descriptors/behavior_desc_robot_1.txt') as file:
         for line in file:
             measure, value = line.strip().split(' ')
             behavior_headers.append(measure)
             file_summary.write(measure+'\t')
 
     phenotype_headers = []
-    with open(path + '/data_fullevolution/descriptors/phenotype_desc_robot_1.txt') as file:
+    with open(path + '/data_fullevolution/descriptors/phenotype_desc_1.txt') as file:
+    # with open(path + '/data_fullevolution/descriptors/phenotype_desc_robot_1.txt') as file:
         for line in file:
             measure, value = line.strip().split(' ')
             phenotype_headers.append(measure)

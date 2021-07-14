@@ -4,13 +4,13 @@ library(plyr)
 library(dplyr)
 library(trend)
 
-base_directory <- paste('projects/revolve/experiments/karines_experiments/data', sep='')
+base_directory <- paste('projects/emiel_revolve/experiments/examples/data/test_2', sep='')
 
 output_directory = base_directory
 
 experiments_type = c(
-                'plane',
-                'lava'
+                '1',
+                '2'
                 )
 
 initials = c('p', 'l')
