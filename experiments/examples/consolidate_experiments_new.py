@@ -1,4 +1,6 @@
 import os
+import csv
+import json
 
 # set these variables according to your experiments #
 dirpath = 'data'
@@ -48,23 +50,27 @@ for exp in experiments_type:
         behavior_headers, phenotype_headers = build_headers(path)
 
         file_summary = open(path + "/all_measures.tsv", "a")
-        for r, d, f in os.walk(path+'/data_fullevolution/fitness'):
-            for file in f:
-
-                robot_id = file.split('.')[0].split('_')[-1]
+        # working with csv instead of directory containing .txt files
+        with open(path+'/data_fullevolution/fitness.csv', 'r') as fitness_csv:
+            fitness_file = csv.reader(fitness_csv)
+            for fitness_row in fitness_file:
+                robot_id = fitness_row[0]
                 file_summary.write(robot_id+'\t')
 
-                bh_file = path+'/data_fullevolution/descriptors/behavior_desc_robot_'+robot_id+'.txt'
+                bh_file = path+'/data_fullevolution/descriptors/behavioural/behavior_desc_'+robot_id+'.txt'
                 if os.path.isfile(bh_file):
                     with open(bh_file) as file:
                         for line in file:
-                            measure, value = line.strip().split(' ')
+                            print("line[1] equals ", line[1])
+                            data = line.strip().split(' ')
+                            print(data)
+                            value = data[1]
                             file_summary.write(value+'\t')
                 else:
                     for h in behavior_headers:
                         file_summary.write('None'+'\t')
 
-                pt_file = path+'/data_fullevolution/descriptors/phenotype_desc_robot_'+robot_id+'.txt'
+                pt_file = path+'/data_fullevolution/descriptors/phenotype_desc_'+robot_id+'.txt'
                 if os.path.isfile(pt_file):
                     with open(pt_file) as file:
                         for line in file:
@@ -74,8 +80,7 @@ for exp in experiments_type:
                     for h in phenotype_headers:
                         file_summary.write('None'+'\t')
 
-                file = open(path+'/data_fullevolution/fitness/fitness_robot_'+robot_id+'.txt', 'r')
-                fitness = file.read()
+                fitness = fitness_row[1]
                 file_summary.write(fitness + '\n')
         file_summary.close()
 
