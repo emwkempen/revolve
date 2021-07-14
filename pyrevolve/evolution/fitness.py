@@ -165,7 +165,7 @@ def directed_locomotion(robot_manager, robot):
     print("Projected distance: ", dist_projection)
 
     # filter out passive blocks
-    if dist_projection < 1.0:
+    if dist_projection < 0.01:
         fitness = 0
         print("Did not pass fitness test, fitness = ", fitness)
     else:
@@ -248,14 +248,14 @@ def directed_locomotion_test_5(robot_manager, robot):
     # filter out passive blocks
     if dist_projection < 1.0:
         fitness = 0
+        print("Did not pass fitness test, fitness = ", fitness)
     else:
-        dist_penalty = math.sqrt((pos_1[0] - X_p) ** 2 + (pos_1[1] - Y_p) ** 2)
+        dist_penalty = displacement_run * math.sin(delta)
         penalty = 0.01 * dist_penalty
 
         # fitness = dist_projection / (alpha + ksi) - penalty
         fitness = (abs(dist_projection) / (path_length + epsilon)) * (dist_projection / (delta + ksi) - penalty)
-
-    print("Fitness: ", fitness)
+        print("Fitness = ", fitness)
 
     return fitness
 

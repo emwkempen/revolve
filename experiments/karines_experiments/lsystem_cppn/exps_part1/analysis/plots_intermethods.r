@@ -13,7 +13,7 @@ library(viridis)
 
 #### CHANGE THE PARAMETERS HERE ####
 
-base_directory <-paste('lsystem_cppn', sep='')
+base_directory <-paste('projects/revolve/experiments/examples/data', sep='')
 analysis = 'analysis'
 output_directory = paste(base_directory,'/',analysis ,sep='')
 
