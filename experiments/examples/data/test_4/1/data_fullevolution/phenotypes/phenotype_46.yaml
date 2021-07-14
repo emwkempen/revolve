@@ -1,0 +1,106 @@
+id: 46
+body:
+  id: '1'
+  type: CoreComponent
+  orientation: null
+  params:
+    blue: 0
+    green: 1
+    red: 1
+  children:
+    0:
+      id: '7'
+      type: ActiveHinge
+      orientation: 0
+      params:
+        blue: 0.58
+        green: 0.08
+        red: 1.0
+    1:
+      id: '4'
+      type: ActiveHinge
+      orientation: 0
+      params:
+        blue: 0.58
+        green: 0.08
+        red: 1.0
+    2:
+      id: '2'
+      type: FixedBrick
+      orientation: 90
+      params:
+        blue: 1.0
+        green: 0.5
+        red: 0.5
+      children:
+        3:
+          id: '3'
+          type: ActiveHinge
+          orientation: 270
+          params:
+            blue: 0.58
+            green: 0.08
+            red: 1.0
+    3:
+      id: '5'
+      type: ActiveHinge
+      orientation: 0
+      params:
+        blue: 0.58
+        green: 0.08
+        red: 1.0
+      children:
+        1:
+          id: '6'
+          type: FixedBrick
+          orientation: 90
+          params:
+            blue: 1.0
+            green: 0.5
+            red: 0.5
+          children:
+            1:
+              id: '8'
+              type: ActiveHinge
+              orientation: 270
+              params:
+                blue: 0.58
+                green: 0.08
+                red: 1.0
+brain:
+  controller:
+    abs_output_bound: 1.0
+    cppn: 22 serialization::archive 18 0 0 46 0 0 9 0 0 0 1 1 0.00000000000000000e+00
+      0.00000000000000000e+00 0.00000000000000000e+00 0.00000000000000000e+00 0 0
+      1 0.00000000000000000e+00 2 1 0.00000000000000000e+00 0.00000000000000000e+00
+      0.00000000000000000e+00 0.00000000000000000e+00 0 0 1 0.00000000000000000e+00
+      3 1 0.00000000000000000e+00 0.00000000000000000e+00 0.00000000000000000e+00
+      0.00000000000000000e+00 0 0 1 0.00000000000000000e+00 4 1 0.00000000000000000e+00
+      0.00000000000000000e+00 0.00000000000000000e+00 0.00000000000000000e+00 0 0
+      1 0.00000000000000000e+00 5 1 0.00000000000000000e+00 0.00000000000000000e+00
+      0.00000000000000000e+00 0.00000000000000000e+00 0 0 1 0.00000000000000000e+00
+      6 1 0.00000000000000000e+00 0.00000000000000000e+00 0.00000000000000000e+00
+      0.00000000000000000e+00 0 0 1 0.00000000000000000e+00 7 1 0.00000000000000000e+00
+      0.00000000000000000e+00 0.00000000000000000e+00 0.00000000000000000e+00 0 0
+      1 0.00000000000000000e+00 8 2 0.00000000000000000e+00 0.00000000000000000e+00
+      0.00000000000000000e+00 0.00000000000000000e+00 0 0 1 0.00000000000000000e+00
+      9 4 3.02499999999999991e+00 0.00000000000000000e+00 0.00000000000000000e+00
+      0.00000000000000000e+00 0 0 2 1.00000000000000000e+00 0 0 8 0 0 0 1 9 1 0 -6.60092195728793768e-02
+      2 9 2 0 1.81364016165025538e-01 3 9 3 0 -1.44836611580103636e-02 4 9 4 0 -1.02073249884415435e-01
+      5 9 5 0 8.37800757377408500e-02 6 9 6 0 1.39137309370562456e-01 7 9 7 0 1.48229832062497735e-01
+      8 9 8 0 4.02636127546429634e-02 8 1 -inf -inf 0 0.00000000000000000e+00 0
+    init_neuron_state: 0.707
+    load_brain: null
+    output_directory: null
+    output_signal_factor: 1.0
+    range_lb: null
+    range_ub: 1.0
+    reset_neuron_random: false
+    reset_neuron_state_bool: null
+    reset_robot_position: null
+    run_analytics: null
+    startup_time: null
+    use_frame_of_reference: false
+    verbose: null
+    weights: null
+  type: cppn-cpg
