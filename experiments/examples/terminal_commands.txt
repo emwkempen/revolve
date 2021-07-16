@@ -33,5 +33,10 @@ killall gzserver - kill current processes
 man kill 15 - asking to kill
 man kill 9 - demanding to kill
 
---help
---run --> multiple files? equals multiple experiments
+terminal: 4 cores, change run X (1-30) and port 11345+100
+./revolve.py --run=X --port-start=11345 --n-cores=4 --simulator-cmd=gzserver --manager=experiments/examples/manager_dir_loc.py
+
+check robot simulation
+ --simulator-cmd=gzserver --test-robot=[.yaml file]
+
+ ~. to exit ssh
