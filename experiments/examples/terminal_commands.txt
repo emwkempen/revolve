@@ -12,3 +12,18 @@ source .venv/bin/activate
 ./revolve.py --n-cores=1 --simulator-cmd=gazebo --manager=experiments/examples/manager_dir_loc.py
 
 ./revolve.py --simulator-cmd gazebo --test-robot /Users/robyx2/projects/Emiel_revolve/experiments/examples/yaml/spider9-cpg.yaml
+
+SSH
+
+ssh emielkempen@145.108.196.231
+|W;!uGy6rZ1P%6>ZU#5c@cxco
+
+ripper1: 145.108.196.231
+ripper2: 145.108.196.188
+ripper3: internal
+ripper4: internal
+ripper5: 145.108.196.232
+
+Remote SSH
+ssh ekn307@ssh.data.vu.nl -L10022:<ripper_ip_address>:22 (in one terminal)
+ssh emielkempen@localhost -p10022 (in another terminal)
