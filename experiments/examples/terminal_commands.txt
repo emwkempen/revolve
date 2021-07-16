@@ -7,7 +7,7 @@ Once installed:
 source .venv/bin/activate
 
 ./revolve.py --n-cores=8 --simulator-cmd=gzserver --manager=experiments/examples/tutorial5.py
-./revolve.py --n-cores=8 --simulator-cmd=gzserver --manager=experiments/examples/manager_dir_loc.py
+./revolve.py --n-cores=32 --simulator-cmd=gzserver --manager=experiments/examples/manager_dir_loc.py
 
 ./revolve.py --n-cores=1 --simulator-cmd=gazebo --manager=experiments/examples/manager_dir_loc.py
 
@@ -27,3 +27,11 @@ ripper5: 145.108.196.232
 Remote SSH
 ssh ekn307@ssh.data.vu.nl -L10022:<ripper_ip_address>:22 (in one terminal)
 ssh emielkempen@localhost -p10022 (in another terminal)
+
+htop - show current ripper activity
+killall gzserver - kill current processes
+man kill 15 - asking to kill
+man kill 9 - demanding to kill
+
+--help
+--run --> multiple files? equals multiple experiments
