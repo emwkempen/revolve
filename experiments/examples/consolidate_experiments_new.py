@@ -32,6 +32,8 @@ def build_headers(path):
             measure, value = line.strip().split(' ')
             phenotype_headers.append(measure)
             file_summary.write(measure+'\t')
+            # if measure == "bottom_layer":
+            #     break
     file_summary.write('fitness\n')
     file_summary.close()
 
@@ -54,6 +56,7 @@ for exp in experiments_type:
         with open(path+'/data_fullevolution/fitness.csv', 'r') as fitness_csv:
             fitness_file = csv.reader(fitness_csv)
             for fitness_row in fitness_file:
+                print(fitness_row[-1])
                 robot_id = fitness_row[0]
                 file_summary.write(robot_id+'\t')
 
@@ -61,11 +64,9 @@ for exp in experiments_type:
                 if os.path.isfile(bh_file):
                     with open(bh_file) as file:
                         for line in file:
-                            print("line[1] equals ", line[1])
                             data = line.strip().split(' ')
-                            print(data)
-                            value = data[1]
-                            file_summary.write(value+'\t')
+                            value = data[-1]
+                            file_summary.write(value + '\t')
                 else:
                     for h in behavior_headers:
                         file_summary.write('None'+'\t')
@@ -74,13 +75,14 @@ for exp in experiments_type:
                 if os.path.isfile(pt_file):
                     with open(pt_file) as file:
                         for line in file:
-                            measure, value = line.strip().split(' ')
+                            data = line.strip().split(' ')
+                            value = data[-1]
                             file_summary.write(value+'\t')
                 else:
                     for h in phenotype_headers:
                         file_summary.write('None'+'\t')
 
-                fitness = fitness_row[1]
+                fitness = fitness_row[-1]
                 file_summary.write(fitness + '\n')
         file_summary.close()
 
