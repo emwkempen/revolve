@@ -37,9 +37,9 @@ from pyrevolve.genotype.lsystem_neat.mutation import standard_mutation as lmutat
 async def run():
     #################################### SETTING UP THE EXPERIMENT #####################################
     # Define experiment paramameters
-    num_generations = 10
-    population_size = 10
-    offspring_size = 5
+    num_generations = 100
+    population_size = 100
+    offspring_size = 50
 
     # Using L-system encoding
     body_conf: PlasticodingConfig = PlasticodingConfig(
